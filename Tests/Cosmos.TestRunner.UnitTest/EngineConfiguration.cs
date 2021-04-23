@@ -22,7 +22,7 @@ namespace Cosmos.TestRunner.UnitTest
         {
             get
             {
-                yield return RunTargetEnum.Bochs;
+                yield return RunTargetEnum.VMware;
             }
         }
 

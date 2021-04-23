@@ -46,7 +46,7 @@ namespace Cosmos.TestRunner.TestAdapter
 
             AllowedSecondsInKernel = GetIntValue(runConfiguration, nameof(AllowedSecondsInKernel), 1200);
 
-            var runTargetsString = GetStringValue(runConfiguration, nameof(RunTargets), "Bochs");
+            var runTargetsString = GetStringValue(runConfiguration, nameof(RunTargets), "VMWare");
             var runTargets = new List<RunTargetEnum>();
 
             foreach (var runTargetName in runTargetsString.Split(';'))
