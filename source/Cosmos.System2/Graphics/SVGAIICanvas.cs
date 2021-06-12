@@ -88,7 +88,7 @@ namespace Cosmos.System.Graphics
         /// <param name="x">X coordinate.</param>
         /// <param name="y">Y coordinate.</param>
         /// <exception cref="Exception">Thrown on memory access violation.</exception>
-        public override void DrawPoint(Pen aPen, int aX, int aY)
+        public override void DrawPoint(ref Pen aPen, int aX, int aY)
         {
             Color xColor = aPen.Color;
 

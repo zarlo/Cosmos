@@ -238,7 +238,7 @@ namespace Cosmos.System.Graphics
         /// <param name="aPen"></param>
         /// <param name="aX"></param>
         /// <param name="aY"></param>
-        public override void DrawPoint(Pen aPen, int aX, int aY)
+        public override void DrawPoint(ref Pen aPen, int aX, int aY)
         {
             _VGADriver.SetPixel((uint)aX, (uint)aY, aPen.Color);
         }

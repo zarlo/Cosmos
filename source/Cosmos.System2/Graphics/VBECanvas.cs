@@ -211,7 +211,7 @@ namespace Cosmos.System.Graphics
         /// <param name="aX">X coordinate.</param>
         /// <param name="aY">Y coordinate.</param>
         /// <exception cref="NotImplementedException">Thrown if color depth is not supported (currently only 32 is supported).</exception>
-        public override void DrawPoint(Pen aPen, int aX, int aY)
+        public override void DrawPoint(ref Pen aPen, int aX, int aY)
         {
             Color color = aPen.Color;
             uint offset;

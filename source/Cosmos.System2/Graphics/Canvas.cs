@@ -63,7 +63,7 @@ namespace Cosmos.System.Graphics
             {
                 for (int y = 0; y < Mode.Columns; y++)
                 {
-                    DrawPoint(pen, x, y);
+                    DrawPoint(ref pen, x, y);
                 }
             }
         }
@@ -91,7 +91,18 @@ namespace Cosmos.System.Graphics
         /// <param name="x">X coordinate.</param>
         /// <param name="y">Y coordinate.</param>
         /// <exception cref="Exception">Thrown on memory access violation.</exception>
-        public abstract void DrawPoint(Pen pen, int x, int y);
+        public void DrawPoint(Pen pen, int x, int y) {
+            DrawPoint(ref pen, x, y);
+        }
+
+        /// <summary>
+        /// Draw point.
+        /// </summary>
+        /// <param name="pen">Pen to draw with.</param>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        /// <exception cref="Exception">Thrown on memory access violation.</exception>
+        public abstract void DrawPoint(ref Pen pen, int x, int y);
 
         /// <summary>
         /// Draw point to the screen. 
@@ -157,7 +168,7 @@ namespace Cosmos.System.Graphics
 
             for (i = 0; i < dx; i++)
             {
-                DrawPoint(pen, x1 + i, y1);
+                DrawPoint(ref pen, x1 + i, y1);
             }
         }
 
@@ -175,7 +186,7 @@ namespace Cosmos.System.Graphics
 
             for (i = 0; i < dy; i++)
             {
-                DrawPoint(pen, x1, y1 + i);
+                DrawPoint(ref pen, x1, y1 + i);
             }
         }
 
@@ -217,7 +228,7 @@ namespace Cosmos.System.Graphics
                         py += sdy;
                     }
                     px += sdx;
-                    DrawPoint(pen, px, py);
+                    DrawPoint(ref pen, px, py);
                 }
             }
             else /* the line is more vertical than horizontal */
@@ -231,7 +242,7 @@ namespace Cosmos.System.Graphics
                         px += sdx;
                     }
                     py += sdy;
-                    DrawPoint(pen, px, py);
+                    DrawPoint(ref pen, px, py);
                 }
             }
         }
@@ -344,14 +355,14 @@ namespace Cosmos.System.Graphics
 
             while (x >= y)
             {
-                DrawPoint(pen, x_center + x, y_center + y);
-                DrawPoint(pen, x_center + y, y_center + x);
-                DrawPoint(pen, x_center - y, y_center + x);
-                DrawPoint(pen, x_center - x, y_center + y);
-                DrawPoint(pen, x_center - x, y_center - y);
-                DrawPoint(pen, x_center - y, y_center - x);
-                DrawPoint(pen, x_center + y, y_center - x);
-                DrawPoint(pen, x_center + x, y_center - y);
+                DrawPoint(ref pen, x_center + x, y_center + y);
+                DrawPoint(ref pen, x_center + y, y_center + x);
+                DrawPoint(ref pen, x_center - y, y_center + x);
+                DrawPoint(ref pen, x_center - x, y_center + y);
+                DrawPoint(ref pen, x_center - x, y_center - y);
+                DrawPoint(ref pen, x_center - y, y_center - x);
+                DrawPoint(ref pen, x_center + y, y_center - x);
+                DrawPoint(ref pen, x_center + x, y_center - y);
 
                 y++;
                 if (e <= 0)
@@ -404,13 +415,13 @@ namespace Cosmos.System.Graphics
                 for (int i = x0 - x; i <= x0 + x; i++)
                 {
                     
-                    DrawPoint(pen, i, y0 + y);
-                    DrawPoint(pen, i, y0 - y);
+                    DrawPoint(ref pen, i, y0 + y);
+                    DrawPoint(ref pen, i, y0 - y);
                 }
                 for (int i = x0 - y; i <= x0 + y; i++)
                 {
-                    DrawPoint(pen, i, y0 + x);
-                    DrawPoint(pen, i, y0 - x);
+                    DrawPoint(ref pen, i, y0 + x);
+                    DrawPoint(ref pen, i, y0 - x);
                 }
 
                 y++;
@@ -507,10 +518,10 @@ namespace Cosmos.System.Graphics
 
             while (x >= 0)
             {
-                DrawPoint(pen, x_center + x, y_center + y);
-                DrawPoint(pen, x_center - x, y_center + y);
-                DrawPoint(pen, x_center - x, y_center - y);
-                DrawPoint(pen, x_center + x, y_center - y);
+                DrawPoint(ref pen, x_center + x, y_center + y);
+                DrawPoint(ref pen, x_center - x, y_center + y);
+                DrawPoint(ref pen, x_center - x, y_center - y);
+                DrawPoint(ref pen, x_center + x, y_center - y);
                 e2 = 2 * err;
                 if (e2 <= dy) { y++; err += dy += a; }
                 if (e2 >= dx || 2 * err > dy) { x--; err += dx += b1; }
@@ -550,7 +561,7 @@ namespace Cosmos.System.Graphics
                 {
                     if (x * x * height * height + y * y * width * width <= height * height * width * width)
                     {
-                        DrawPoint(pen, point.X + x, point.Y + y);
+                        DrawPoint(ref pen, point.X + x, point.Y + y);
                     }
                 }
             }
@@ -1000,7 +1011,7 @@ namespace Cosmos.System.Graphics
                 {
                     if (aFont.ConvertByteToBitAddres(aFont.Data[p + cy], cx + 1))
                     {
-                        DrawPoint(pen, (ushort)((x) + (aFont.Width - cx)), (ushort)((y) + cy));
+                        DrawPoint(ref pen, (ushort)((x) + (aFont.Width - cx)), (ushort)((y) + cy));
                     }
                 }
             }
